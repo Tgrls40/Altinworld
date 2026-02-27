@@ -120,22 +120,33 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'heading' -%}
+            {%- assign _heading = block.settings.heading -%}
+            {%- if _heading == blank or _heading == 'Image banner' -%}
+              {%- assign _heading = 'AltinWorld — Tijdloze sieraden met karakter' -%}
+            {%- endif -%}
             <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
               {{ block.shopify_attributes }}
             >
-              {{ block.settings.heading }}
+              {{ _heading }}
             </h2>
           {%- when 'text' -%}
+            {%- assign _text = block.settings.text -%}
+            {%- if _text == blank or _text contains 'Give customers details' or _text contains 'Up to 60%' -%}
+              {%- assign _text = 'Ontdek onze collectie handgeselecteerde sieraden voor elk bijzonder moment.' -%}
+            {%- endif -%}
             <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
-              <p>{{ block.settings.text }}</p>
+              <p>{{ _text }}</p>
             </div>
           {%- when 'buttons' -%}
+            {%- assign _btn1 = block.settings.button_label_1 -%}
+            {%- assign _btn2 = block.settings.button_label_2 -%}
+            {%- if _btn1 == blank or _btn1 == 'Shop all' -%}{%- assign _btn1 = 'Shop nu' -%}{%- endif -%}
             <div
-              class="banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} banner__buttons--multiple{% endif %}"
+              class="banner__buttons{% if _btn1 != blank and _btn2 != blank %} banner__buttons--multiple{% endif %}"
               {{ block.shopify_attributes }}
             >
-              {%- if block.settings.button_label_1 != blank -%}
+              {%- if _btn1 != blank -%}
                 <a
                   {% if block.settings.button_link_1 == blank %}
                     role="link" aria-disabled="true"
@@ -144,10 +155,10 @@
                   {% endif %}
                   class="button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
                 >
-                  {{- block.settings.button_label_1 | escape -}}
+                  {{- _btn1 | escape -}}
                 </a>
               {%- endif -%}
-              {%- if block.settings.button_label_2 != blank -%}
+              {%- if _btn2 != blank -%}
                 <a
                   {% if block.settings.button_link_2 == blank %}
                     role="link" aria-disabled="true"
@@ -156,7 +167,7 @@
                   {% endif %}
                   class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
                 >
-                  {{- block.settings.button_label_2 | escape -}}
+                  {{- _btn2 | escape -}}
                 </a>
               {%- endif -%}
             </div>
