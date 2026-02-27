@@ -1,7 +1,7 @@
 {
   "sections": {
     "aw-hero": {
-      "type": "image-banner",
+      "type": "aw-hero",
       "blocks": {
         "aw-hero-heading": {
           "type": "heading",
@@ -77,33 +77,27 @@
       }
     },
     "aw-usp": {
-      "type": "multicolumn",
+      "type": "aw-usp",
       "blocks": {
         "aw-usp-1": {
           "type": "column",
           "settings": {
             "title": "Gratis verzending",
-            "text": "<p>Gratis verzending bij bestellingen vanaf €75. Snel en zorgvuldig verpakt aan huis bezorgd.<\/p>",
-            "link_label": "",
-            "link": ""
+            "text": "<p>Gratis verzending bij bestellingen vanaf €75. Snel en zorgvuldig verpakt aan huis bezorgd.<\/p>"
           }
         },
         "aw-usp-2": {
           "type": "column",
           "settings": {
             "title": "30 dagen retour",
-            "text": "<p>Niet tevreden? Retourneer uw aankoop binnen 30 dagen — zonder vragen, zonder gedoe.<\/p>",
-            "link_label": "",
-            "link": ""
+            "text": "<p>Niet tevreden? Retourneer uw aankoop binnen 30 dagen — zonder vragen, zonder gedoe.<\/p>"
           }
         },
         "aw-usp-3": {
           "type": "column",
           "settings": {
             "title": "Veilig betalen",
-            "text": "<p>Betaal veilig via iDEAL, creditcard of PayPal. Uw gegevens zijn altijd beschermd.<\/p>",
-            "link_label": "",
-            "link": ""
+            "text": "<p>Betaal veilig via iDEAL, creditcard of PayPal. Uw gegevens zijn altijd beschermd.<\/p>"
           }
         }
       },
@@ -114,17 +108,14 @@
       ],
       "settings": {
         "title": "",
-        "heading_size": "h1",
         "image_width": "third",
         "image_ratio": "adapt",
         "columns_desktop": 3,
         "column_alignment": "center",
         "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "swipe_on_mobile": false,
         "color_scheme": "scheme-1",
         "columns_mobile": "1",
+        "swipe_on_mobile": false,
         "padding_top": 56,
         "padding_bottom": 56
       }
