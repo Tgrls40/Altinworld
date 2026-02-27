@@ -118,12 +118,23 @@
                   </div>
                 </div>
               {%- endif -%}
+              {%- assign aw_usp_titles = 'Gratis verzending,30 dagen retour,Veilig betalen' | split: ',' -%}
+              {%- assign aw_usp_texts = 'Gratis verzending bij bestellingen vanaf €75. Snel en zorgvuldig verpakt aan huis bezorgd.,Niet tevreden? Retourneer uw aankoop binnen 30 dagen — zonder vragen zonder gedoe.,Betaal veilig via iDEAL creditcard of PayPal. Uw gegevens zijn altijd beschermd.' | split: ',' -%}
+              {%- assign aw_usp_idx = forloop.index0 -%}
+              {%- assign aw_title = block.settings.title -%}
+              {%- assign aw_text = block.settings.text -%}
+              {%- if aw_title == blank or aw_title == 'Column' -%}
+                {%- assign aw_title = aw_usp_titles[aw_usp_idx] -%}
+              {%- endif -%}
+              {%- if aw_text == blank or aw_text contains 'Pair text with an image' or aw_text contains 'Column' -%}
+                {%- assign aw_text = aw_usp_texts[aw_usp_idx] -%}
+              {%- endif -%}
               <div class="multicolumn-card__info">
-                {%- if block.settings.title != blank -%}
-                  <h3 class="inline-richtext">{{ block.settings.title }}</h3>
+                {%- if aw_title != blank -%}
+                  <h3 class="inline-richtext">{{ aw_title }}</h3>
                 {%- endif -%}
-                {%- if block.settings.text != blank -%}
-                  <div class="rte">{{ block.settings.text }}</div>
+                {%- if aw_text != blank -%}
+                  <div class="rte"><p>{{ aw_text }}</p></div>
                 {%- endif -%}
                 {%- if block.settings.link_label != blank -%}
                   <a

@@ -118,12 +118,19 @@
                   </div>
                 </div>
               {%- endif -%}
+              {%- assign _mc_usp_titles = 'Gratis verzending,30 dagen retour,Veilig betalen' | split: ',' -%}
+              {%- assign _mc_usp_texts = 'Gratis verzending bij bestellingen vanaf €75. Snel en zorgvuldig verpakt aan huis bezorgd.,Niet tevreden? Retourneer uw aankoop binnen 30 dagen — zonder vragen zonder gedoe.,Betaal veilig via iDEAL creditcard of PayPal. Uw gegevens zijn altijd beschermd.' | split: ',' -%}
+              {%- assign _mc_idx = forloop.index0 -%}
+              {%- assign _mc_title = block.settings.title -%}
+              {%- assign _mc_text = block.settings.text -%}
+              {%- if _mc_title == blank or _mc_title == 'Column' -%}{%- assign _mc_title = _mc_usp_titles[_mc_idx] -%}{%- endif -%}
+              {%- if _mc_text == blank or _mc_text contains 'Pair text with an image' -%}{%- assign _mc_text = _mc_usp_texts[_mc_idx] -%}{%- endif -%}
               <div class="multicolumn-card__info">
-                {%- if block.settings.title != blank -%}
-                  <h3 class="inline-richtext">{{ block.settings.title }}</h3>
+                {%- if _mc_title != blank -%}
+                  <h3 class="inline-richtext">{{ _mc_title }}</h3>
                 {%- endif -%}
-                {%- if block.settings.text != blank -%}
-                  <div class="rte">{{ block.settings.text }}</div>
+                {%- if _mc_text != blank -%}
+                  <div class="rte"><p>{{ _mc_text }}</p></div>
                 {%- endif -%}
                 {%- if block.settings.link_label != blank -%}
                   <a

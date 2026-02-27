@@ -21,6 +21,11 @@
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when 'heading' -%}
+              {%- assign _rt_heading = block.settings.heading -%}
+              {%- if _rt_heading == 'Talk about your brand' -%}
+                {%- assign _rt_heading = '' -%}
+              {%- endif -%}
+              {%- if _rt_heading != blank -%}
               <h2
                 class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
@@ -29,8 +34,9 @@
                   style="--animation-order: {{ forloop.index }};"
                 {% endif %}
               >
-                {{ block.settings.heading }}
+                {{ _rt_heading }}
               </h2>
+              {%- endif -%}
             {%- when 'caption' -%}
               <p
                 class="rich-text__caption {{ block.settings.text_style }} {{ block.settings.text_style }}--{{ block.settings.text_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -43,6 +49,9 @@
                 {{ block.settings.caption | escape }}
               </p>
             {%- when 'text' -%}
+              {%- assign _rt_text = block.settings.text -%}
+              {%- if _rt_text contains 'Share information about your brand' -%}{%- assign _rt_text = '' -%}{%- endif -%}
+              {%- if _rt_text != blank -%}
               <div
                 class="rich-text__text rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
@@ -53,6 +62,7 @@
               >
                 {{ block.settings.text }}
               </div>
+              {%- endif -%}
             {%- when 'button' -%}
               <div
                 class="rich-text__buttons{% if block.settings.button_label != blank and block.settings.button_label_2 != blank %} rich-text__buttons--multiple{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"

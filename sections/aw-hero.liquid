@@ -120,45 +120,53 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'heading' -%}
+            {%- assign aw_heading = block.settings.heading -%}
+            {%- if aw_heading == blank or aw_heading == 'Image banner' -%}
+              {%- assign aw_heading = 'AltinWorld — Tijdloze sieraden met karakter' -%}
+            {%- endif -%}
             <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
               {{ block.shopify_attributes }}
             >
-              {{ block.settings.heading }}
+              {{ aw_heading }}
             </h2>
           {%- when 'text' -%}
+            {%- assign aw_text = block.settings.text -%}
+            {%- if aw_text == blank or aw_text contains 'Give customers details' or aw_text contains 'Up to 60%' -%}
+              {%- assign aw_text = 'Ontdek onze collectie handgeselecteerde sieraden voor elk bijzonder moment.' -%}
+            {%- endif -%}
             <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
-              <p>{{ block.settings.text }}</p>
+              <p>{{ aw_text }}</p>
             </div>
           {%- when 'buttons' -%}
+            {%- assign aw_btn1 = block.settings.button_label_1 -%}
+            {%- assign aw_btn2 = block.settings.button_label_2 -%}
+            {%- if aw_btn1 == blank or aw_btn1 == 'Shop all' -%}{%- assign aw_btn1 = 'Shop nu' -%}{%- endif -%}
+            {%- if aw_btn2 == blank or aw_btn2 == 'Optional button' -%}{%- assign aw_btn2 = 'Bekijk collecties' -%}{%- endif -%}
             <div
-              class="banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} banner__buttons--multiple{% endif %}"
+              class="banner__buttons banner__buttons--multiple"
               {{ block.shopify_attributes }}
             >
-              {%- if block.settings.button_label_1 != blank -%}
-                <a
-                  {% if block.settings.button_link_1 == blank %}
-                    role="link" aria-disabled="true"
-                  {% else %}
-                    href="{{ block.settings.button_link_1 }}"
-                  {% endif %}
-                  class="button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
-                >
-                  {{- block.settings.button_label_1 | escape -}}
-                </a>
-              {%- endif -%}
-              {%- if block.settings.button_label_2 != blank -%}
-                <a
-                  {% if block.settings.button_link_2 == blank %}
-                    role="link" aria-disabled="true"
-                  {% else %}
-                    href="{{ block.settings.button_link_2 }}"
-                  {% endif %}
-                  class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
-                >
-                  {{- block.settings.button_label_2 | escape -}}
-                </a>
-              {%- endif -%}
+              <a
+                {% if block.settings.button_link_1 == blank %}
+                  role="link" aria-disabled="true"
+                {% else %}
+                  href="{{ block.settings.button_link_1 }}"
+                {% endif %}
+                class="button button--primary"
+              >
+                {{- aw_btn1 | escape -}}
+              </a>
+              <a
+                {% if block.settings.button_link_2 == blank %}
+                  role="link" aria-disabled="true"
+                {% else %}
+                  href="{{ block.settings.button_link_2 }}"
+                {% endif %}
+                class="button button--secondary"
+              >
+                {{- aw_btn2 | escape -}}
+              </a>
             </div>
         {%- endcase -%}
       {%- endfor -%}
