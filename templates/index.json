@@ -1,23 +1,23 @@
 {
   "sections": {
-    "image_banner": {
+    "aw-hero": {
       "type": "image-banner",
       "blocks": {
-        "heading": {
+        "aw-hero-heading": {
           "type": "heading",
           "settings": {
             "heading": "AltinWorld — Tijdloze sieraden met karakter",
             "heading_size": "h0"
           }
         },
-        "text": {
+        "aw-hero-text": {
           "type": "text",
           "settings": {
             "text": "Ontdek onze collectie handgeselecteerde sieraden voor elk bijzonder moment.",
             "text_style": "subtitle"
           }
         },
-        "button": {
+        "aw-hero-button": {
           "type": "buttons",
           "settings": {
             "button_label_1": "Shop nu",
@@ -30,9 +30,9 @@
         }
       },
       "block_order": [
-        "heading",
-        "text",
-        "button"
+        "aw-hero-heading",
+        "aw-hero-text",
+        "aw-hero-button"
       ],
       "settings": {
         "image_overlay_opacity": 35,
@@ -48,7 +48,7 @@
         "padding_bottom": 0
       }
     },
-    "featured_collection": {
+    "aw-collectie": {
       "type": "featured-collection",
       "settings": {
         "title": "Onze collectie",
@@ -76,10 +76,10 @@
         "padding_bottom": 56
       }
     },
-    "usp_columns": {
+    "aw-usp": {
       "type": "multicolumn",
       "blocks": {
-        "usp-1": {
+        "aw-usp-1": {
           "type": "column",
           "settings": {
             "title": "Gratis verzending",
@@ -88,7 +88,7 @@
             "link": ""
           }
         },
-        "usp-2": {
+        "aw-usp-2": {
           "type": "column",
           "settings": {
             "title": "30 dagen retour",
@@ -97,7 +97,7 @@
             "link": ""
           }
         },
-        "usp-3": {
+        "aw-usp-3": {
           "type": "column",
           "settings": {
             "title": "Veilig betalen",
@@ -108,9 +108,9 @@
         }
       },
       "block_order": [
-        "usp-1",
-        "usp-2",
-        "usp-3"
+        "aw-usp-1",
+        "aw-usp-2",
+        "aw-usp-3"
       ],
       "settings": {
         "title": "",
@@ -129,30 +129,30 @@
         "padding_bottom": 56
       }
     },
-    "newsletter": {
+    "aw-nieuwsbrief": {
       "type": "newsletter",
       "blocks": {
-        "heading": {
+        "aw-nl-heading": {
           "type": "heading",
           "settings": {
             "heading": "Ontvang exclusieve aanbiedingen"
           }
         },
-        "subheading": {
+        "aw-nl-sub": {
           "type": "subheading",
           "settings": {
             "subheading": "Schrijf u in voor onze nieuwsbrief en ontvang als eerste nieuws over nieuwe collecties en speciale acties."
           }
         },
-        "email_form": {
+        "aw-nl-form": {
           "type": "email_form",
           "settings": {}
         }
       },
       "block_order": [
-        "heading",
-        "subheading",
-        "email_form"
+        "aw-nl-heading",
+        "aw-nl-sub",
+        "aw-nl-form"
       ],
       "settings": {
         "color_scheme": "scheme-5",
@@ -163,9 +163,9 @@
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection",
-    "usp_columns",
-    "newsletter"
+    "aw-hero",
+    "aw-collectie",
+    "aw-usp",
+    "aw-nieuwsbrief"
   ]
 }
