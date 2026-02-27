@@ -1,0 +1,337 @@
+/**
+ * AltinWorld — Brand CSS
+ * Dawn v15.4.0 overrides & extensions
+ * Stijl: luxe, minimaal, betrouwbaar
+ */
+
+/* ============================================================
+   1. BRAND TOKENS
+   ============================================================ */
+:root {
+  --color-accent-gold: #C9A84C;
+  --color-accent-gold-rgb: 201, 168, 76;
+
+  /* Overschrijf heading-font-fallback zodat Playfair Display
+     graceful degradeert naar serif als het font niet laadt */
+  --font-heading-family-fallback: Georgia, "Times New Roman", serif;
+
+  /* Aangepaste transitiesnelheid voor premium feel */
+  --duration-default: 200ms;
+  --duration-slow: 400ms;
+  --easing-default: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ============================================================
+   2. TYPOGRAFIE — fluid headings met clamp()
+   Werkt bovenop Dawn's --font-heading-scale variabele.
+   Bereik: ~4rem (mobiel) → ~7.2rem (groot scherm)
+   ============================================================ */
+.hxxl {
+  font-size: clamp(
+    calc(var(--font-heading-scale) * 4rem),
+    calc(var(--font-heading-scale) * 4rem + 3.2vw),
+    calc(var(--font-heading-scale) * 7.2rem)
+  );
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.hxl {
+  font-size: clamp(
+    calc(var(--font-heading-scale) * 3.2rem),
+    calc(var(--font-heading-scale) * 3.2rem + 2vw),
+    calc(var(--font-heading-scale) * 6.2rem)
+  );
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+.h0 {
+  font-size: clamp(
+    calc(var(--font-heading-scale) * 2.8rem),
+    calc(var(--font-heading-scale) * 2.8rem + 1.5vw),
+    calc(var(--font-heading-scale) * 5.2rem)
+  );
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+h1, .h1 {
+  font-size: clamp(
+    calc(var(--font-heading-scale) * 2.4rem),
+    calc(var(--font-heading-scale) * 2.4rem + 0.8vw),
+    calc(var(--font-heading-scale) * 4rem)
+  );
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+/* Premium letter-spacing op body-tekst */
+body {
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   3. GOUD ACCENT — knoppen
+   ============================================================ */
+
+/* Primaire knop: gouden rand + gouden glow bij hover/focus */
+.button:not(.button--secondary):not(.button--tertiary):hover,
+.button:not(.button--secondary):not(.button--tertiary):focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px rgba(var(--color-accent-gold-rgb), 0.6),
+    0 4px 16px rgba(var(--color-accent-gold-rgb), 0.2);
+  transition:
+    box-shadow var(--duration-default) var(--easing-default),
+    transform var(--duration-default) var(--easing-default);
+  transform: translateY(-1px);
+}
+
+/* Zachte hover-transitie op alle knoppen */
+.button {
+  transition:
+    box-shadow var(--duration-default) var(--easing-default),
+    transform var(--duration-default) var(--easing-default),
+    background-color var(--duration-default) var(--easing-default);
+}
+
+/* ============================================================
+   4. PRODUCTKAART HOVER
+   Subtiele lift + schaduw-verdieping
+   ============================================================ */
+.card-wrapper {
+  transition: transform var(--duration-slow) var(--easing-default);
+}
+
+.card-wrapper:hover {
+  transform: translateY(-3px);
+}
+
+.card-wrapper:hover .card {
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: box-shadow var(--duration-slow) var(--easing-default);
+}
+
+/* Productafbeelding: zachte zoom bij hover */
+.card__media .media img {
+  transition: transform var(--duration-slow) var(--easing-default);
+}
+
+.card-wrapper:hover .card__media .media img {
+  transform: scale(1.03);
+}
+
+/* ============================================================
+   5. BADGES
+   Sale: koningsblauw met goud accent tekst
+   Sold-out: zwart (via scheme-4 in settings_data.json)
+   ============================================================ */
+
+/* Extra goud accent op sale-badge tekst */
+.badge.color-scheme-5 {
+  color: rgb(var(--color-accent-gold-rgb));
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+/* Sold-out badge: consistent donker */
+.badge.color-scheme-4 {
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* ============================================================
+   6. AANKONDIGINGSBALK — goud accent streepje
+   ============================================================ */
+.announcement-bar__message {
+  position: relative;
+}
+
+.announcement-bar__message::before {
+  content: "";
+  display: inline-block;
+  width: 2.4rem;
+  height: 1px;
+  background-color: var(--color-accent-gold);
+  vertical-align: middle;
+  margin-inline-end: 1.2rem;
+  opacity: 0.8;
+}
+
+.announcement-bar__message::after {
+  content: "";
+  display: inline-block;
+  width: 2.4rem;
+  height: 1px;
+  background-color: var(--color-accent-gold);
+  vertical-align: middle;
+  margin-inline-start: 1.2rem;
+  opacity: 0.8;
+}
+
+/* ============================================================
+   7. DECORATIEF SCHEIDINGSTEKEN
+   Gebruik: <div class="altinworld-divider"></div>
+   ============================================================ */
+.altinworld-divider {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  margin: 3.2rem auto;
+  max-width: 16rem;
+}
+
+.altinworld-divider::before,
+.altinworld-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-accent-gold);
+  opacity: 0.5;
+}
+
+.altinworld-divider__icon {
+  color: var(--color-accent-gold);
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+}
+
+/* ============================================================
+   8. SCROLL-REVEAL ANIMATIES
+   Dawn's animations.js voegt .animate en .visible toe.
+   We voegen hier de keyframes en initiële staat toe.
+   ============================================================ */
+@keyframes altinworld-fadeup {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes altinworld-fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Dawn gebruikt .animate klasse — we verfijnen de animatie */
+.animate--slide-in,
+.animate--fade-in {
+  animation-duration: var(--duration-slow);
+  animation-timing-function: var(--easing-default);
+  animation-fill-mode: both;
+}
+
+/* Cascade-vertraging voor grid-items */
+.product-grid .grid__item:nth-child(1) { animation-delay: 0ms; }
+.product-grid .grid__item:nth-child(2) { animation-delay: 60ms; }
+.product-grid .grid__item:nth-child(3) { animation-delay: 120ms; }
+.product-grid .grid__item:nth-child(4) { animation-delay: 180ms; }
+.product-grid .grid__item:nth-child(5) { animation-delay: 240ms; }
+.product-grid .grid__item:nth-child(6) { animation-delay: 300ms; }
+.product-grid .grid__item:nth-child(7) { animation-delay: 360ms; }
+.product-grid .grid__item:nth-child(8) { animation-delay: 420ms; }
+
+/* ============================================================
+   9. FOCUS-STIJLEN (toegankelijkheid)
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--color-accent-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Verberg focus-ring bij muis, toon bij toetsenbord */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================================
+   10. PREFERS-REDUCED-MOTION
+   Alle animaties uitschakelen voor gebruikers die dat wensen.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .card-wrapper:hover,
+  .card-wrapper:hover .card__media .media img {
+    transform: none;
+  }
+
+  .button:hover,
+  .button:focus-visible {
+    transform: none;
+  }
+}
+
+/* ============================================================
+   11. HERO SECTIE — extra styling voor image-banner
+   ============================================================ */
+.banner__heading {
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Subtiele gouden onderlijn op hero heading */
+.banner__heading .h0,
+.banner__heading.h0 {
+  position: relative;
+  display: inline-block;
+}
+
+/* CTA-knop in hero: wit met gouden hover */
+.banner .button--secondary:hover,
+.banner .button--secondary:focus-visible {
+  border-color: var(--color-accent-gold);
+  color: var(--color-accent-gold);
+  transition:
+    border-color var(--duration-default) var(--easing-default),
+    color var(--duration-default) var(--easing-default);
+}
+
+/* ============================================================
+   12. NIEUWSBRIEF SECTIE — premium styling
+   ============================================================ */
+.newsletter-section .newsletter__subheading {
+  opacity: 0.85;
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+}
+
+/* Input-focus in nieuwsbrief: goud accent */
+.newsletter-section .field__input:focus {
+  border-color: var(--color-accent-gold);
+  box-shadow: 0 0 0 1px var(--color-accent-gold);
+}
+
+/* ============================================================
+   13. UTILITY: visually-hidden (aanvulling op Dawn)
+   ============================================================ */
+.altinworld-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
